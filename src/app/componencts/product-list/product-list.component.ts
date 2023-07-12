@@ -26,10 +26,8 @@ export class ProductListComponent {
     this.searchMode = this.route.snapshot.paramMap.has("keyword");
 
     if (this.searchMode){
-      console.log("ulos u if")
       this.handleSearchProducts();
     }else{
-      console.log("ulos u else")
     this.handleListProducts();
     }
   }

@@ -15,6 +15,8 @@ export class SearchComponent {
   doSearch(value:String){
     this.router.navigateByUrl(`/search/${value}`);
 
+    let searchInput = document.getElementById('myInput') as HTMLInputElement;
+    searchInput.value = ''
   }
 
 
