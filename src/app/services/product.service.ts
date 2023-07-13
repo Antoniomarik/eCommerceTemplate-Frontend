@@ -44,7 +44,7 @@ export class ProductService {
   }
 
   //pagination
-  gerProductListPaginate(thePage: number,
+  getProductListPaginate(thePage: number,
                          thePageSize: number,
                          theCategoryId:number): Observable<GetResponseProducts>{
 
