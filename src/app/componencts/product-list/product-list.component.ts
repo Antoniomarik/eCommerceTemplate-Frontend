@@ -109,4 +109,8 @@ export class ProductListComponent {
     this.listProducts();
   }
 
+  addToCart(theProduct: Product){
+    console.log(`adding to card: ${theProduct.name}`)
+  }
+
 }
