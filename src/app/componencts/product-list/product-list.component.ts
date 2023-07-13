@@ -19,6 +19,8 @@ export class ProductListComponent {
   thePageSize = 12;
   theTotalElements = 0;
 
+  previousKeyword: string = "";
+
   constructor(private productService: ProductService,
               private route: ActivatedRoute){}
 
@@ -58,14 +60,8 @@ export class ProductListComponent {
     console.log(`curred id :${this.currentCategoryId}, previous: ${this.previousCategoryId}, pagenum: ${this.thePageNumber}`)
 
     //new
-    this.productService.getProductListPaginate(this.thePageNumber -1,this.thePageSize,this.currentCategoryId).subscribe(
-      data => {
-        this.products = data._embedded.products;
-        this.thePageNumber = data.page.number +1;
-        this.theTotalElements = data.page.totalElements;
-        this.thePageSize = data.page.size;
-      }
-    );
+    this.productService.getProductListPaginate(this.thePageNumber -1,this.thePageSize,this.currentCategoryId)
+                                              .subscribe(this.processResult());
 
     //get product list for given category id
     //old
@@ -79,12 +75,33 @@ export class ProductListComponent {
   private handleSearchProducts() {
     const theKeyword : string = this.route.snapshot.paramMap.get("keyword")!;
 
+    //if we have different keyword than previous, set thePageNumber to 1
+    if(this.previousKeyword != theKeyword){
+      this.thePageNumber = 1;
+    }
+    this.previousKeyword = theKeyword;
+
     //search for thw product using keyword
-    this.productService.searchProducts(theKeyword).subscribe(
-      data => {
-        this.products = data;
-      }
-    )
+
+    //old method without pagination
+    //this.productService.searchProducts(theKeyword).subscribe(
+      //data => {
+        //this.products = data;
+      //}
+    //)
+
+    //new method
+    this.productService.searchProductsPaginate(this.thePageNumber -1,this.thePageSize,theKeyword)
+                                              .subscribe(this.processResult());
+  }
+
+  processResult(){
+    return (data: any) => {
+      this.products = data._embedded.products;
+      this.thePageNumber = data.page.number +1;
+      this.thePageSize = data.page.size;
+      this.theTotalElements = data.page.totalElements
+    }
   }
   updatePageSize(pageSize: string) {
     this.thePageSize = +pageSize;
