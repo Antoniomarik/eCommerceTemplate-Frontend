@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <!-- loop over collection of product -->
-        <div *ngFor="let tempProduct of products" class="col-md-4">
+        <div *ngFor="let tempProduct of products" class="col-md-3">
           <div class="product-box">
 
             <a routerLink="/products/{{tempProduct.id}}">
@@ -39,6 +39,16 @@
                                 [collectionSize]="theTotalElements"
                                 (pageChange)="listProducts();"
                 ></ngb-pagination>
+              </div>
+              <div class="col-md-3 mt-2" style="text-align: right;">
+                <span class="mr-2">Page Size </span>
+                <select #myPageSelect (change)="updatePageSize(myPageSelect.value)">
+                  <option selected="true">12</option>
+                  <option>24</option>
+                  <option>36</option>
+
+
+                </select>
               </div>
             </div>
           </div>

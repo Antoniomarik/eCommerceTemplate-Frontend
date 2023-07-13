@@ -16,7 +16,7 @@ export class ProductListComponent {
 
   //new properties for pagination
   thePageNumber = 1;
-  thePageSize = 10;
+  thePageSize = 12;
   theTotalElements = 0;
 
   constructor(private productService: ProductService,
@@ -86,4 +86,10 @@ export class ProductListComponent {
       }
     )
   }
+  updatePageSize(pageSize: string) {
+    this.thePageSize = +pageSize;
+    this.thePageNumber = 1;
+    this.listProducts();
+  }
+
 }
