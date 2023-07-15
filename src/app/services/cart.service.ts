@@ -12,10 +12,11 @@ export class CartService {
   totalQuantity: Subject<number> = new Subject<number>();
   constructor() { }
 
+
   addToCart(theCartItem: CartItem){
     //check if already have this item in out cart
     let alreadyExistInCart: boolean = false;
-    let existingCartItem: CartItem | undefined = undefined;
+    let existingCartItem: CartItem = undefined;
 
     if(this.cartItems.length > 0 ){
       //find the item in the card based on item id
@@ -28,13 +29,13 @@ export class CartService {
         //new way
       //}
       //new way
-      existingCartItem = this.cartItems.find(tempCartItem => tempCartItem.id === tempCartItem.id) ;
+      existingCartItem = this.cartItems.find( tempCartItem => tempCartItem.id === theCartItem.id );
       //check if we found it
       alreadyExistInCart = (existingCartItem != undefined);
     }
 
     if(alreadyExistInCart){
-      existingCartItem!.quantity++;
+      existingCartItem.quantity++;
     }else {
       this.cartItems.push(theCartItem);
     }
@@ -42,6 +43,14 @@ export class CartService {
     //compute cart total price and total quantity
     this.computeCartTotals();
 
+    console.log('Contents of the cart');
+    for (let tempCartItem of this.cartItems) {
+      const subTotalPrice = tempCartItem.quantity * tempCartItem.unitPrice;
+      console.log(`name: ${tempCartItem.name}, quantity=${tempCartItem.quantity}, unitPrice=${tempCartItem.unitPrice}, subTotalPrice=${subTotalPrice}`);
+    }
+
+
+    console.log('----');
   }
 
    computeCartTotals() {
@@ -53,9 +62,12 @@ export class CartService {
       totalQuantityValue += currentCartItem.quantity;
     }
     //publist new values
+
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
-
+     for(let x of this.cartItems){
+       console.log(x.name);
+     }
     //log cart data for debuging - tbd
 
   }
