@@ -41,5 +41,14 @@ import {CartService} from "../../services/cart.service";
     }
   }
 
+  incrementQuantity(theCartItem: CartItem){
+    this.cartService.addToCart(theCartItem)
+  }
+
+  decrementQuantity(theCartIem: CartItem){
+    this.cartService.decrementQuantity(theCartIem)
+
+  }
+
 }
 

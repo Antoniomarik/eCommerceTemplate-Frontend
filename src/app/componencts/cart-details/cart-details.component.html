@@ -5,9 +5,9 @@
       <div *ngIf="cartItems.length > 0">
       <table class="table table-bordered">
         <tr>
-          <th width="20%">Product Image</th>
-          <th width="50%">Product Detail</th>
-          <th width="30%"></th>
+          <th style="width:20%">Product Image</th>
+          <th style="width:50%">Product Detail</th>
+          <th style="width:30%"></th>
         </tr>
         <tr *ngFor="let tempCartItem of cartItems">
           <td>
@@ -19,9 +19,29 @@
           </td>
           <td>
             <div class="items">
-              <label>Quantity:</label> {{ tempCartItem.quantity }}
-            </div>
+              <label>Quantity:</label>
 
+              <div class="row no-gutters">
+                <div class="col">
+                  <button class="btn btn-primary btn-sm" (click)="decrementQuantity(tempCartItem)">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+
+                <div class="col ml-5 mr-2">
+                  {{tempCartItem.quantity}}
+                </div>
+                <div class="col">
+                  <button class="btn btn-primary btn-sm" (click)="incrementQuantity(tempCartItem)">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+                <div class="col-9"></div>
+              </div>
+            </div>
+            <div>
+            <button class="btn btn-danger btn-sm mt-2" (click)="decrementQuantity(tempCartItem)">Remove</button>
+            </div>
             <p class="mt-2">Subtotal: {{ tempCartItem.quantity * tempCartItem.unitPrice | currency: 'USD' }}</p>
           </td>
         </tr>
