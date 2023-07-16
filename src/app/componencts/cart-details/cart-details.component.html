@@ -40,7 +40,7 @@
               </div>
             </div>
             <div>
-            <button class="btn btn-danger btn-sm mt-2" (click)="decrementQuantity(tempCartItem)">Remove</button>
+            <button class="btn btn-danger btn-sm mt-2" (click)="remove(tempCartItem)">Remove</button>
             </div>
             <p class="mt-2">Subtotal: {{ tempCartItem.quantity * tempCartItem.unitPrice | currency: 'USD' }}</p>
           </td>

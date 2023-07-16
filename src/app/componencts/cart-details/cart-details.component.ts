@@ -50,5 +50,9 @@ import {CartService} from "../../services/cart.service";
 
   }
 
+  remove(theCartItem){
+    this.cartService.remove(theCartItem)
+  }
+
 }
 
