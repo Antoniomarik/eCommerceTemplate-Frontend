@@ -18,9 +18,12 @@ export class CheckoutComponent implements OnInit{
         firstName: [""],
         lastName: [""],
         email: [""],
-
       })
     })
   }
 
+  onSubmit(){
+    console.log("Handling the submit button")
+    console.log(this.checkoutFormGroup.get("customer").value);
+  }
 }
