@@ -18,6 +18,27 @@ export class CheckoutComponent implements OnInit{
         firstName: [""],
         lastName: [""],
         email: [""],
+      }),
+        shippingAddress: this.formBuilder.group({
+          street:[""],
+          country: [""],
+          zipCode: [""],
+          city: [""],
+          state: [""]
+        }),
+      billingAddress: this.formBuilder.group({
+        street:[""],
+        country: [""],
+        zipCode: [""],
+        city: [""],
+        state: [""]
+      }),
+      creditCard: this.formBuilder.group({
+        cardType:[""],
+        nameOnTheCard: [""],
+        securityCode: [""],
+        expirationMonth: [""],
+        expirationYear: [""]
       })
     })
   }
