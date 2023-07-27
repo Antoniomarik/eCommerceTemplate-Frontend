@@ -198,18 +198,9 @@
             <div class="col-md-9">
               <div class="input-space">
                 <select formControlName="expirationMonth">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
-                  <option>9</option>
-                  <option>10</option>
-                  <option>11</option>
-                  <option>12</option>
+                  <option *ngFor="let month of creditCardMonths">
+                    {{month}}
+                  </option>
                 </select>
               </div>
             </div>
@@ -221,20 +212,10 @@
             <div class="col-md-9">
               <div class="input-space">
                 <select formControlName="expirationYear">
-                  <option>2023</option>
-                  <option>2024</option>
-                  <option>2025</option>
-                  <option>2026</option>
-                  <option>2027</option>
-                  <option>2028</option>
-                  <option>2029</option>
-                  <option>2030</option>
-                  <option>2031</option>
-                  <option>2032</option>
-                  <option>2033</option>
-                  <option>2034</option>
-                  <option>2035</option>
-                  <option>2036</option>
+                  <option *ngFor="let year of creditCardYears">
+                    {{year}}
+                  </option>
+
                 </select>
               </div>
             </div>
