@@ -31,7 +31,7 @@
               </div>
             </div>
           </div>
-        <!-- shippingAddress form -->
+        <!-- shippingAddress  -->
         <div formGroupName="shippingAddress" class="form-area">
           <h3>Shipping Adress</h3>
 
@@ -40,7 +40,9 @@
             <div class="col-md-9">
               <div class="input-space">
                 <select formControlName="country">
-                  <option>TODO</option>
+                  <option *ngFor="let country of countries" [ngValue]="country">
+                    {{country.name}}
+                  </option>
                 </select>
               </div>
             </div>
